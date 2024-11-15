@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:59:36 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 16:14:49 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:42:43 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ int	ft_mapp(t_data data, void *p)
 		printed += ft_printpadding(' ', data.padding - len);
 	printed += ft_printp(p);
 	if (data.minus)
-		printed += ft_printpadding(' ', data.padding - len);
+		printed += ft_printpadding(' ', data.padding - printed);
 	return (printed);
 }
 
@@ -327,7 +327,7 @@ t_data	format_map(const char *format, va_list args, int *printed)
 	else if (data.type == 'p')
 		*printed += (ft_mapp(data, va_arg(args, void *)));
 	else if (data.type == 'x' || data.type == 'X')
-		*printed += (ft_maphexa(data, va_arg(args, unsigned long)));
+		*printed += (ft_maphexa(data, va_arg(args, unsigned int)));
 	else if (data.type == '%')
 		*printed += (ft_printchar('%'));
 	return (data);

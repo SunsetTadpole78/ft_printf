@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:04:23 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 12:14:42 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:08:54 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@
 
 #include <stdio.h>
 
-typedef struct s_padding
-{
-	char	c;
-	int	size;
-	int	type;
-	char	c2;
-	int	size2;
-	int	type2;
-}	t_padding;
-
 typedef struct s_data
 {
 	int	formatsize;
@@ -43,6 +33,7 @@ typedef struct s_data
 	int	plus;
 	int	padding;
 	int	size;
+	int	star;
 }	t_data;
 
 int	ft_printf(const char *format, ...);

@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:59:28 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 12:08:53 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:31:53 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ int	ft_printhexa(unsigned long value, char *base)
 	printed = 0;
 	if (ft_strlen(base) != 16)
 		return (0);
-	if (value > 16)
-	{
+	if (value >= 16)
 		printed += ft_printhexa(value / 16, base);
-	}
 	return (printed + ft_printchar(base[value % 16]));
 }
 

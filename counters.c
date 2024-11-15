@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:13:04 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 11:56:56 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:43:09 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_counthexa(unsigned long nbr)
 	int	count;
 
 	count = 0;
-	while (nbr > 16 || nbr % 16 != 0)
+	while (nbr >= 16 || nbr % 16 != 0)
 	{
 		nbr /= 16;
 		count++;
