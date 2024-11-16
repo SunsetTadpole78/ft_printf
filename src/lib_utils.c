@@ -1,56 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   counters.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 16:13:04 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 21:27:06 by lroussel         ###   ########.fr       */
+/*   Created: 2024/11/16 16:09:55 by lroussel          #+#    #+#             */
+/*   Updated: 2024/11/16 16:09:56 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(char *str)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-unsigned int	ft_log(int long nb, int len)
-{
-	if (nb < 0)
-		nb = -nb;
-	if (nb < len)
-		return (1);
-	return (1 + ft_log(nb / len, len));
-}
-
-int	ft_counthexa(unsigned long nbr)
-{
-	int	count;
-
-	count = 0;
-	while (nbr >= 16 || nbr % 16 != 0)
+	while (s[i])
 	{
-		nbr /= 16;
-		count++;
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	return (count);
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (NULL);
 }
 
-int	ft_countp(void *p)
+long int	ft_abs(long int nbr)
 {
-	if (!p)
-		return (5);
-	return (ft_counthexa((unsigned long)p) + 2);
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
 }
 
 int	ft_mini_atoi(const char *nptr)

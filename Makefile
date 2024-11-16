@@ -1,21 +1,12 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/13 17:54:50 by lroussel          #+#    #+#              #
-#    Updated: 2024/11/15 21:25:36 by lroussel         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRC = src
 INCLUDE = include
-DEFAULT = ft_printf.c	\
-	  mapper.c	\
-	  printer.c	\
-	  counters.c
+DEFAULT = data_initializer.c	\
+	  default_formatter.c		\
+	  ft_printf.c				\
+	  hbase_formatter.c			\
+	  len_utils.c				\
+	  lib_utils.c				\
+	  values_printers.c
 FILES = $(addprefix $(SRC)/, $(DEFAULT))
 OBJS = $(FILES:%.c=%.o)
 NAME = libftprintf.a

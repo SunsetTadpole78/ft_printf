@@ -17,9 +17,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+/* _______________________________ Structure ________________________________ */
+
 typedef struct s_data
 {
-	int		formatsize;
+	int		size;
 	char	type;
 	int		minus;
 	int		zero;
@@ -28,34 +30,52 @@ typedef struct s_data
 	int		space;
 	int		plus;
 	int		padding;
-	int		size;
-	int		star;
+	int		elsize;
 }	t_data;
 
-int				ft_printf(const char *format, ...);
+/* ___________________________ data_initializer.c ___________________________ */
 
-//Mapper
-int				ft_mapstr(t_data data, char *str);
-int				ft_mapchar(t_data data, char c);
-int				ft_mapnbr(t_data data, long int nbr);
-int				ft_mapunbr(t_data data, unsigned int nbr);
-int				ft_mapp(t_data data, void *p);
-int				ft_maphexa(t_data data, unsigned long nbr);
+t_data			init_data(const char *format, va_list args);
+void			init_flags(t_data *data);
+void			update_flags(const char *c, t_data *data, va_list args);
+void			update_values(t_data *data);
+
+/* __________________________ default_formatter.c ___________________________ */
+
+int				format_char(t_data data, char c);
+int				format_str(t_data data, char *str);
+int				format_int(t_data data, long int nbr);
+int				format_unsigned_int(t_data data, unsigned int nbr);
+
+/* ______________________________ ft_printf.c _______________________________ */
+
+int				ft_printf(const char *format, ...);
+t_data			format_switcher(const char *format, va_list args, int *printed);
+
+/* ___________________________ hbase_formatter.c ____________________________ */
+
+int				format_hexa(t_data data, unsigned long nbr);
+int				format_pointer(t_data data, void *p);
+
+/* _______________________________ len_utils.c ______________________________ */
 
 int				ft_strlen(char *str);
 unsigned int	ft_log(int long nb, int len);
-int				ft_counthexa(unsigned long nbr);
-int				ft_countp(void *p);
-int				ft_mini_atoi(const char *nptr);
+int				ft_hexalen(unsigned long nbr);
+int				ft_pointerlen(void *p);
+
+/* ______________________________ lib_utils.c _______________________________ */
+
+char			*ft_strchr(const char *s, int c);
 long int		ft_abs(long int nbr);
+int				ft_mini_atoi(const char *nptr);
 
-int				ft_printchar(char c);
-int				ft_printstr(char *str, int size);
-int				ft_printhexa(unsigned long value, char type);
-int				ft_printp(void *p);
-int				ft_printnbr(long int nbr);
-int				ft_printunbr(unsigned int nbr);
+/* ___________________________ values_printers.c ____________________________ */
 
-int				ft_printpadding(char c, int times);
+int				ft_print_char(char c, int times);
+int				ft_print_str(char *str, int size);
+int				ft_print_unsigned_int(unsigned int nbr);
+int				ft_print_hexa(unsigned long value, char type);
+int				ft_print_pointer(void *p);
 
 #endif
