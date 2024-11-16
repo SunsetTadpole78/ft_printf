@@ -6,9 +6,11 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:13:04 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 18:43:09 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:27:06 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_strlen(char *str)
 {
@@ -20,25 +22,6 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-int     ft_countdigits(long int n)
-{
-	int     count;
-
-	if (n == -2147483648)
-		return (10);
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		n *= -1;
-	count = 0;
-	while (n / 10 != 0 || n % 10 != 0)
-	{
-		n /= 10;
-		count++;
-	}
-	return (count);
 }
 
 unsigned int	ft_log(int long nb, int len)
@@ -70,29 +53,14 @@ int	ft_countp(void *p)
 	return (ft_counthexa((unsigned long)p) + 2);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_mini_atoi(const char *nptr)
 {
-	int			i;
-	short int	s;
-	int			result;
+	int	i;
+	int	result;
 
 	i = 0;
-	s = 1;
 	result = 0;
-	while (nptr[i] == '\t' || nptr[i] == '\n' || nptr[i] == '\r'
-			|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			s = -1;
-		i++;
-	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	nptr = nptr + i;
-	return (result * s);
+		result = result * 10 + (nptr[i++] - '0');
+	return (result);
 }
