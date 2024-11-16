@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 21:16:21 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/16 15:11:34 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:24:19 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ int	format_hexa(t_data data, unsigned long nbr)
 	int	printed;
 	int	len;
 
-	printed = (nbr != 0) * data.hashtag * 2;
+	printed = 0;
 	len = ft_log(nbr, 16);
 	if (data.dot && ((data.elsize > len) || (data.elsize == 0 && nbr == 0)))
 		len = data.elsize;
 	data.zero &= !(data.minus || data.dot);
 	if (!data.minus && !data.zero && data.padding > printed + len)
 		printed += ft_print_char(' ', data.padding - (printed + len));
-	if (nbr != 0 && data.hashtag)
-		printed += ft_print_char('0', 1) + ft_print_char(data.type, 1);
+	printed += ft_print_char('0', nbr != 0 && data.hashtag);
+	printed += ft_print_char(data.type, nbr != 0 && data.hashtag);
 	if (data.zero && data.padding > printed + len)
 		len = data.padding - printed;
 	printed += ft_print_char('0', len - ft_log(nbr, 16));

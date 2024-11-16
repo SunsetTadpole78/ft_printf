@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 21:16:21 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/16 15:11:34 by lroussel         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:26:53 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,12 @@ int	format_int(t_data data, long int nbr)
 		len = data.elsize;
 	data.zero &= !(data.dot || data.minus);
 	data.space &= !data.plus;
-	printed -= nbr >= 0 && data.space;
+	printed += ft_print_char(' ', nbr >= 0 && data.space);
 	if (!data.minus && data.padding > 0 && !data.zero)
 		printed += ft_print_char(' ', data.padding - (len + printed
 					+ (nbr < 0 || data.plus || data.space)));
-	if (nbr < 0)
-		printed += ft_print_char('-', 1);
-	else if (data.plus)
-		printed += ft_print_char('+', 1);
+	printed += ft_print_char('-', nbr < 0);
+	printed += ft_print_char('+', nbr >= 0 && data.plus);
 	if (data.zero && data.padding - printed > len)
 		len = data.padding - printed;
 	printed += ft_print_char('0', len - ft_log(nbr, 10));
