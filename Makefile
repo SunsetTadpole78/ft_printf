@@ -3,9 +3,11 @@ INCLUDE = include
 DEFAULT = data_initializer.c	\
 	  default_formatter.c		\
 	  ft_printf.c				\
+	  ft_printf_fd.c			\
 	  hbase_formatter.c			\
 	  len_utils.c				\
 	  lib_utils.c				\
+	  switcher.c				\
 	  values_printers.c
 FILES = $(addprefix $(SRC)/, $(DEFAULT))
 OBJS = $(FILES:%.c=%.o)

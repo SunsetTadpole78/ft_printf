@@ -6,7 +6,7 @@
 /*   By: lroussel <lroussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:04:23 by lroussel          #+#    #+#             */
-/*   Updated: 2024/11/15 21:31:51 by lroussel         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:34:58 by lroussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,28 @@ void			update_values(t_data *data);
 
 /* __________________________ default_formatter.c ___________________________ */
 
-int				format_char(t_data data, char c);
-int				format_str(t_data data, char *str);
-int				format_int(t_data data, long int nbr);
-int				format_unsigned_int(t_data data, unsigned int nbr);
+int				format_char(t_data data, char c, int fd);
+int				format_str(t_data data, char *str, int fd);
+int				format_int(t_data data, long int nbr, int fd);
+int				format_unsigned_int(t_data data, unsigned int nbr, int fd);
 
 /* ______________________________ ft_printf.c _______________________________ */
 
 int				ft_printf(const char *format, ...);
-t_data			format_switcher(const char *format, va_list args, int *printed);
+
+/* ____________________________ ft_printf_fd.c ______________________________ */
+
+int				ft_printf_fd(int fd, const char *format, ...);
+
+/* _______________________________ switcher.c _______________________________ */
+
+t_data			format_switcher(const char *format, va_list args,
+					int *printed, int fd);
 
 /* ___________________________ hbase_formatter.c ____________________________ */
 
-int				format_hexa(t_data data, unsigned long nbr);
-int				format_pointer(t_data data, void *p);
+int				format_hexa(t_data data, unsigned long nbr, int fd);
+int				format_pointer(t_data data, void *p, int fd);
 
 /* _______________________________ len_utils.c ______________________________ */
 
@@ -72,10 +80,10 @@ int				ft_mini_atoi(const char *nptr);
 
 /* ___________________________ values_printers.c ____________________________ */
 
-int				ft_print_char(char c, int times);
-int				ft_print_str(char *str, int size);
-int				ft_print_unsigned_int(unsigned int nbr);
-int				ft_print_hexa(unsigned long value, char type);
-int				ft_print_pointer(void *p);
+int				ft_print_char(char c, int times, int fd);
+int				ft_print_str(char *str, int size, int fd);
+int				ft_print_unsigned_int(unsigned int nbr, int fd);
+int				ft_print_hexa(unsigned long value, char type, int fd);
+int				ft_print_pointer(void *p, int fd);
 
 #endif
